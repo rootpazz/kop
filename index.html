@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Моя страница</title>
+	<style>
+		header {
+			background-color: #333;
+			color: white;
+			height: 90px;
+			padding: 1px;
+			border-radius: 10px;
+			box-shadow: 0.01px 1px 79px rgba(0,5 ,5 ,5 );
+			transition: transform 0.8s ease;
+			position: relative;
+		}
+
+	
+		header::before {
+			content: "Я ТЕБЯ ЛЮБЛЮ";
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			font-weight: bold;
+			font-size: 18px;
+			opacity: 0.0001;
+			transition: opacity 2s ease;
+			letter-spacing: 1px;
+		}
+
+		header:hover::before {
+			opacity: 1;
+		}
+
+		header::before span {
+			display: inline-block;
+			transform: rotateY(180deg);
+		}
+
+		footer {
+			background-color: #f2f2f2;
+			color: black;
+			height: 100px;
+			padding: 20px;
+			text-align: center;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+		}
+
+		.button {
+    display: inline-block;
+    padding: 1px 70px;
+    margin: 1px;
+    background-color: #cc9;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+        .button:hover {
+            background-color: #f1111d;
+            color: white;
+}
+        .button {
+            transition: background-color 0.3s ease;
+}
+
+        .button:hover {
+            background-color: #ff9;
+            transform: scale(0.9);
+}
+
+		.modal-overlay {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(2, 3, 666, 0.1);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			visibility: hidden;
+			opacity: 0;
+			transition: visibility 6s, opacity 0.3s;
+			z-index: 999;
+		}
+
+		.modal-content {
+			background-color: rgba(21, 136, 136, 0.8);
+			padding: 4px;
+			border-radius: 20px;
+			width: 50%;
+			max-width: 800px;
+			box-sizing: border-box;
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			line-height: 1.5;
+		}
+
+		.modal-close {
+			position: fixed;
+			bottom: 20px;
+			left: 20px;
+			background-color: rgba(255, 255, 0, 0.5);
+			color: black;
+			border: none;
+			border-radius: 5px;
+			padding: 6px 30px;
+			font-size: 12px;
+			cursor: pointer;
+			opacity: 0.4;
+			transition: opacity 0.9s ease;
+		}
+
+		.modal-close:hover {
+			opacity: 1;
+		}
+
+		.modal-overlay.show {
+			visibility: visible;
+			opacity: 1;
+		}
+	</style>
+</head>
+<body>
+	<header>
+	</header>
+	<div>
+		<button class="button" onclick="openModal(1)">1</button>
+		<button class="button" onclick="openModal(2)">2</button>
+		<button class="button" onclick="openModal(3)">3</button>
+		<button class="button" onclick="openModal(4)">4</button>
+	</div>
+	<div class="modal-overlay" id="modal1">
+		<div class="modal-content">
+			<p style="line-height: 0.3;">+Теория тестирования</p>
+			<p style="line-height: 0.3;">+Техники тест-дизайна</p>
+			<p style="line-height: 0.3;">+Тест-план / Чек-лист / Тест-кейс / Баг-репорт</p>
+			<p style="line-height: 0.3;">+Ручное тестирование</p>
+			<p style="line-height: 0.3;">+Тестирование верстки</p>
+			<p style="line-height: 0.3;">+Кросс-браузерное</p>
+			<p style="line-height: 0.3;">+Тестирование API</p>
+			<p style="line-height: 0.3;">+Jira / JiraZephir / Confluens / Qase.io</p>
+			<p style="line-height: 0.3;">+Figma / Perfect Pixel</p>
+			<p style="line-height: 0.3;">+DevTools</p>
+			<p style="line-height: 0.3;">+Postman / Swagger</p>
+			<p style="line-height: 0.3;">+Charles</p>
+			<p style="line-height: 0.3;">+SQL [Join]</p>
+			<p style="line-height: 0.3;">+Kibana</p>
+			<p style="line-height: 0.3;">+Visual Studio</p>
+			<p style="line-height: 0.3;">+Cypress</p>
+		</div>
+		<button class="modal-close" onclick="closeModal(1)"></button>
+	</div>
+	<div class="modal-overlay" id="modal2">
+		<div class="modal-content">
+			<p>Это всплывающее окно 2</p>
+		</div>
+		<button class="modal-close" onclick="closeModal(2)"></button>
+	</div>
+	<div class="modal-overlay" id="modal3">
+		<div class="modal-content">
+			<p>Это всплывающее окно 3</p>
+		</div>
+		<button class="modal-close" onclick="closeModal(3)"></button>
+	</div>
+	<div class="modal-overlay" id="modal4">
+		<div class="modal-content">
+			<p>Это всплывающее окно 4</p>
+		</div>
+		<button class="modal-close" onclick="closeModal(4
+		)"></button>
+	</div>
+	<footer>
+		<h1>P</h1>
+	</footer>
+
+	<script>
+		function openModal(modalId) {
+			var modal = document.getElementById('modal' + modalId);
+			modal.classList.add('show');
+		}
+
+		function closeModal(modalId) {
+			var modal = document.getElementById('modal' + modalId);
+			modal.classList.remove('show');
+		}
+	</script>
+</body>
+</html>
